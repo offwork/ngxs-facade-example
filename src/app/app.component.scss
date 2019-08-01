@@ -1,18 +1,30 @@
-.beer-card {
-  max-width: 360px;
-  max-height: 480px;
-  overflow: hidden;
-  overflow-y: auto;
+.content-center {
+  display: flex;
+  justify-content: center;
 
-  .spacer {
-    flex: 1 1 auto;
-  }
-
-  .beer-action {
-    margin-right: 4px;
-  }
-
-  .mat-card-header {
-    align-items: first baseline;
+  .beer-card {
+    max-width: 360px;
+    min-width: 360px;
+    max-height: 480px;
+    overflow: hidden;
+    overflow-y: auto;
+  
+    .spacer {
+      flex: 1 1 auto;
+    }
+  
+    .beer-action {
+      margin-right: 4px;
+    }
+  
+    .mat-card-header {
+      align-items: first baseline;
+    }
+  
+    .beer-form {
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px;
+    }
   }
 }

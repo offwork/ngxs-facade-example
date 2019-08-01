@@ -7,7 +7,7 @@ import { BASE_URL } from '../tokens';
 import { Select } from '@ngxs/store';
 import { BeersState } from './beers.state';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { PersistBeersLoadAction, PersistBeersDeleteAction } from './beers.actions';
+import { PersistBeersLoadAction, PersistBeersDeleteAction, PersistBeersEditAction } from './beers.actions';
 
 @Injectable({ providedIn: 'root' })
 export class BeersService {
@@ -35,5 +35,10 @@ export class BeersService {
   @Dispatch()
   public deleteBeers(beers: Beers[]) {
     return new PersistBeersDeleteAction(beers);
+  }
+
+  @Dispatch()
+  public editBeer(beers: Beers) {
+    return new PersistBeersEditAction(beers);
   }
 }
