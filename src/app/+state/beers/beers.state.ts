@@ -1,51 +1,19 @@
-import { State, Action, Selector, StateContext } from '@ngxs/store';
-import { map } from 'rxjs/operators';
+import { State, Action, StateContext } from '@ngxs/store';
 import { Beers } from './beers.model';
-import { BeersAction, PersistBeersByIndexAction } from './beers.actions';
-import { BeersService } from './beers.service';
+import { PersistBeersDeleteAction, PersistBeersLoadAction } from './beers.actions';
 
-export interface BeersStateModel {
-  beers: Beers[];
-  beer: Beers;
-}
-
-@State<BeersStateModel>({
-  name: 'BeersState',
-  defaults: {
-    beers: [],
-    beer: null,
-  }
+@State<Beers[]>({
+  name: 'beers',
+  defaults: []
 })
 export class BeersState {
-
-  @Selector()
-  public static getState(state: BeersStateModel) {
-    return state;
+  @Action(PersistBeersLoadAction)
+  private persistLoad(ctx: StateContext<Beers[]>, { beers }: PersistBeersLoadAction) {
+    ctx.setState(beers);
   }
 
-  @Selector()
-  public static getBeerByIndex(beer: Beers) {
-    return beer;
+  @Action(PersistBeersDeleteAction)
+  private persistDelete(ctx: StateContext<Beers[]>, { payload }: PersistBeersDeleteAction) {
+    ctx.setState(ctx.getState().filter((beer: Beers) => !payload.includes(beer)));
   }
-
-  @Action(BeersAction)
-  public add(ctx: StateContext<BeersStateModel>, { payload }: BeersAction) {
-    const stateModel = ctx.getState();
-    stateModel.beers = [...stateModel.beers, payload];
-    ctx.setState(stateModel);
-  }
-
-  @Action(PersistBeersByIndexAction)
-  public persistByIndex(ctx: StateContext<BeersStateModel>, { payload }: PersistBeersByIndexAction) {
-    const stateModel = ctx.getState();
-    this.beerService
-      .getBeerById(payload)
-      .pipe(
-        map((beer) => {
-          console.log(beer);
-        })
-      );
-  }
-
-  public constructor(private beerService: BeersService) {}
 }

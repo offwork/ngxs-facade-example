@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from './+state/store.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SahredModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    SahredModule,
     AppRoutingModule,
     StoreModule
   ],
