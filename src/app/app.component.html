@@ -6,7 +6,7 @@
       <div class="beer-action">
         Select: {{selection.selectedOptions.selected.length}}
         <button mat-icon-button color="primary" 
-          (click)="beersService.deleteBeers(removeBeers)"
+          (click)="beersService.deleteBeers(removeBeers); resetBeerForm();"
           aria-label="Example icon-button with a heart icon">
           <mat-icon>delete</mat-icon>
         </button>
