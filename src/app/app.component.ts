@@ -29,18 +29,18 @@ export class AppComponent implements AfterViewInit {
   public chooseBeer(beer: Beers) {
     const idx = this.removeBeers.indexOf(beer);
     this.currentBeer = beer;
-    this.beerForm.setValue({
-      name: beer.name,
-      first_brewed: beer.first_brewed,
-      tagline: beer.tagline,
-      description: beer.description
-    });
 
     if (idx !== -1) {
       this.removeBeers.splice(idx, 1);
-      this.beerForm.reset({});
+      this.resetBeerForm();
     } else {
       this.removeBeers.push(beer);
+      this.beerForm.setValue({
+        name: beer.name,
+        first_brewed: beer.first_brewed,
+        tagline: beer.tagline,
+        description: beer.description
+      });
     }
   }
 

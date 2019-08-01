@@ -12,7 +12,7 @@
         </button>
         <span style="border-right: solid 1px #ccc;"></span>
         <button mat-icon-button color="primary" 
-          (click)="beersService.getAllBeers()"
+          (click)="selection.deselectAll(); resetBeerForm(); beersService.getAllBeers();"
           aria-label="Example icon-button with a heart icon">
           <mat-icon>refresh</mat-icon>
         </button>
